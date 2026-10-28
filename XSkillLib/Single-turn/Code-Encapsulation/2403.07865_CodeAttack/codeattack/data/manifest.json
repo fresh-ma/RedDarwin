@@ -1,0 +1,32 @@
+{
+  "schema": "dataset_manifest.v0.1",
+  "paper": "2403.07865",
+  "method": "codeattack",
+  "datasets": [
+    {
+      "name": "AdvBench harmful behaviors",
+      "path": "data/advbench_harmful_behaviors.csv",
+      "format": "csv",
+      "full_count": 520,
+      "columns": ["goal", "target"],
+      "sha256": "6cd1a5c63c07610d7eb67307772ee5606017ee950b5770ab288a2c487489d3e1",
+      "provenance": "Official CodeAttack repo src/codeattack/dataset/harmful_behaviors.csv; AdvBench from llm-attacks/llm-attacks."
+    }
+  ],
+  "templates": {
+    "path": "data/templates/",
+    "prompt_types": [
+      "python_string",
+      "python_string_plus",
+      "python_list",
+      "python_list_plus",
+      "python_stack",
+      "python_stack_plus",
+      "C_string",
+      "go_string"
+    ],
+    "default": "python_stack_plus",
+    "provenance": "Byte-copied from official CodeAttack repo src/codeattack/prompt_templates/."
+  }
+}
+

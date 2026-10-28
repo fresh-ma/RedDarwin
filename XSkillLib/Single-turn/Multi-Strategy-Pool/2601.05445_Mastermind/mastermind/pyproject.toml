@@ -1,0 +1,11 @@
+[project]
+name = "mastermind"
+version = "0.1.0"
+description = "Paper-faithful reimplementation of Mastermind (arXiv 2601.05445) — knowledge-driven, hierarchical, strategy-level multi-turn jailbreak"
+requires-python = ">=3.11"
+# No third-party dependencies: the client uses stdlib urllib; the fuzzing engine and
+# lexical similarity are pure Python. Plain `uv run python scripts/attack.py ...` works.
+dependencies = []
+
+[tool.uv]
+package = false

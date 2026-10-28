@@ -1,0 +1,61 @@
+{
+  "schema_version": "paper_code_artifacts.v0.1",
+  "paper_id": "2406.19845_token-injection-jailbreak",
+  "artifacts": [
+    {
+      "artifact_id": "paper:virtual-context-algorithm",
+      "kind": "paper_digest",
+      "name": "Virtual Context algorithm",
+      "role": "algorithm_reference",
+      "local_path": "digest/algorithms/alg-1.tex",
+      "probe_status": "used"
+    },
+    {
+      "artifact_id": "paper:model-templates",
+      "kind": "paper_digest",
+      "name": "Model chat templates",
+      "role": "template_reference",
+      "local_path": "digest/tables/tab-model-templates.tex",
+      "probe_status": "used"
+    },
+    {
+      "artifact_id": "dataset:advbench-custom-520",
+      "kind": "benchmark_dataset",
+      "name": "AdvBench-compatible harmful behaviors sample",
+      "role": "query_source",
+      "source_urls": [
+        "data/advbench/harmful_behaviors_custom.csv"
+      ],
+      "probe_status": "copied_to_paper_local_cache",
+      "local_path": "data/advbench/harmful_behaviors_custom.csv",
+      "verified": {
+        "row_count": 520
+      },
+      "safety_notes": "Contains harmful goals. Do not quote raw rows in reports."
+    },
+    {
+      "artifact_id": "runner:virtual-context",
+      "kind": "script",
+      "name": "Paper-local Virtual Context prompt renderer",
+      "role": "selected_lightweight_implementation",
+      "source_urls": [
+        "scripts/attack.py"
+      ],
+      "probe_status": "real_20x2_run_deepseek_paper_verbatim_judge",
+      "local_path": "scripts/attack.py"
+    },
+    {
+      "artifact_id": "judge:paper-verbatim-3metric",
+      "kind": "judge",
+      "name": "Matching + 37-word ASR vocab + Sec-13 HarmScore (verbatim)",
+      "role": "evaluation",
+      "source_urls": [
+        "digest/tables/tab-refuse-word-list.tex",
+        "digest/sections/13-example.md",
+        "digest/sections/09.02-metric.md"
+      ],
+      "probe_status": "implemented_verbatim",
+      "notes": "HarmScore GPT-4 prompt served by permissive OpenRouter model (deepseek/deepseek-chat); prompt unchanged. No official repo (paper.meta code_repos empty)."
+    }
+  ]
+}

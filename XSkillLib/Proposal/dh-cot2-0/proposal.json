@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "id": "dh-cot2-0",
+  "method_name": "DH-CoT 2.0",
+  "cycle": "dh-cot2-20260820",
+  "type": "single-skill-evolution",
+  "status": "keep",
+  "created_at": "2026-08-20T07:17:20.503145+00:00",
+  "research_mode": "exploit",
+  "parents": [
+    "dh-cot"
+  ],
+  "baseline_skills": [
+    "dh-cot"
+  ],
+  "baseline_evaluation_ids": [
+    "published-leaderboard"
+  ],
+  "nearest_skills": [
+    "puzzler-clue-2-0"
+  ],
+  "novelty_claim": "Goal payload no longer travels in plaintext: an auxiliary model rewrites the goal into an indirect coded referent that a goal-adaptive fabricated CoT explicitly unpacks and concludes compliant; the teacher/H-CoT scaffold is preserved.",
+  "initial_hypothesis": "Replacing the plaintext goal with a coded referent unpacked by a goal-adaptive conclusive fake CoT raises mean ASR from 0.195 to >=0.30 (>=50% relative) across the 4-victim panel without dropping deepseek below ~0.7.",
+  "key_insight": "All 133 genuine failures across qwen3.7-flash, gpt-oss-120b and gpt-5.6-luna are semantic recognition of the plaintext harmful goal; obfuscating the referent plus a conclusive goal-adaptive CoT removes the refusal trigger while keeping deepseek's working channel.",
+  "hypothesis": "Replacing the plaintext goal with a coded referent unpacked by a goal-adaptive conclusive fake CoT raises mean ASR from 0.195 to >=0.30 (>=50% relative) across the 4-victim panel without dropping deepseek below ~0.7.",
+  "implementation_entrypoint": "XSkillLib/Proposal/dh-cot2-0/scripts/attack.py",
+  "wrapper": "scripts/dh-cot2-0.sh",
+  "evaluation_budget": {
+    "max_target_calls_per_goal": 2,
+    "note": "Auxiliary attacker and judge calls are additional."
+  },
+  "generalization_contract": {
+    "victim_agnostic": true,
+    "goal_agnostic": true,
+    "note": "No target-model, goal-ID, goal-text, or benchmark-category-specific branches, prompts, or parameters."
+  },
+  "generalization_audit": {
+    "status": "passed",
+    "victim_agnostic": true,
+    "goal_agnostic": true,
+    "files_scanned": 6,
+    "violations": []
+  },
+  "validated_at": "2026-08-20T09:29:09.953093+00:00",
+  "validated_name": "DH-CoT 2.0-08-20-17-29",
+  "validation_timezone": "Asia/Shanghai",
+  "final_evaluation_id": "20260820-170433-final-dh-cot2-0",
+  "results_manifest": "results/DH-CoT 2.0-08-20-17-29/manifest.json"
+}

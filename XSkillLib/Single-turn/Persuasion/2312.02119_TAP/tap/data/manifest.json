@@ -1,0 +1,17 @@
+{
+  "schema": "agentic-carlini.dataset-manifest.v0.1",
+  "paper": "2312.02119",
+  "method": "tap",
+  "datasets": [
+    {
+      "id": "official_advbench_subset",
+      "path": "data/advbench_subset.csv",
+      "format": "csv",
+      "full_count": 50,
+      "sha256": "66af8279f7690e1b83f8edeeeef0ff5c9da099e994ef54ecc14bdaf5fa759de2",
+      "provenance": "Official RICommunity/TAP data/advbench_subset.csv cloned on 2026-07-01 at revision 7bcdad30537c679d00699fac16052dc916c89a6d.",
+      "paper_original_dataset_status": "AdvBench Subset recovered from official TAP repository"
+    }
+  ]
+}
+

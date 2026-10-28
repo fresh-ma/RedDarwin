@@ -1,0 +1,8 @@
+[project]
+name = "pap"
+version = "0.1.0"
+description = "PAP (2401.06373) — in-context persuasive-paraphrase jailbreak, self-contained Code repo."
+requires-python = ">=3.11"
+dependencies = [
+    "openai>=1.0",
+]

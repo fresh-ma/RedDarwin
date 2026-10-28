@@ -1,0 +1,11 @@
+[project]
+name = "actorbreaker"
+version = "0.1.0"
+description = "ActorAttack / ActorBreaker — black-box multi-turn actor-network jailbreak (arXiv 2410.10700)"
+requires-python = ">=3.11"
+dependencies = [
+    "openai>=1.40",
+]
+
+[tool.uv]
+package = false

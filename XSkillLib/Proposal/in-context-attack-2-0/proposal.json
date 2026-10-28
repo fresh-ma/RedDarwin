@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "id": "in-context-attack-2-0",
+  "method_name": "In-Context Attack 2.0",
+  "cycle": "in-context-attack-2-0-v1",
+  "type": "single-skill-evolution",
+  "status": "keep",
+  "created_at": "2026-08-14T07:03:23.544058+00:00",
+  "research_mode": "exploit",
+  "parents": [
+    "in-context-attack"
+  ],
+  "baseline_skills": [
+    "in-context-attack"
+  ],
+  "baseline_evaluation_ids": [
+    "published-leaderboard"
+  ],
+  "nearest_skills": [
+    "puzzler-clue-2-0"
+  ],
+  "novelty_claim": "Goal-conditioned demonstration synthesis: an attacker LLM generates, per goal, k adjacent harmful query/compliant detailed-answer pairs instead of ICA's fixed 5-demo prefix with sanitized stub answers; the single-forward-pass chat-prefix structure of ICA is preserved.",
+  "initial_hypothesis": "Replacing the fixed stub-answer demo set with goal-conditioned, detailed, compliant demonstration pairs converts a substantial share of the parent's score-1 refusal cells, lifting mean ASR from 0.000 at the same 1-target-call-per-goal final budget.",
+  "key_insight": "Parent ICA scores 0.000 on all four panel victims (score-1 clean refusals in sampled records): its demonstrations are 5 fixed AdvBench-front queries whose answers are sanitized 'omitted' stubs, so the in-context bias toward a detailed compliant sub-distribution is both off-topic and anti-compliant. Puzzler-clue-2-0 (mean 0.855) shows goal-conditioned content generation converts exactly these refusal cells.",
+  "hypothesis": "Replacing the fixed stub-answer demo set with goal-conditioned, detailed, compliant demonstration pairs converts a substantial share of the parent's score-1 refusal cells, lifting mean ASR from 0.000 at the same 1-target-call-per-goal final budget.",
+  "implementation_entrypoint": "scripts/attack.py",
+  "wrapper": "scripts/in-context-attack-2-0.sh",
+  "evaluation_budget": {
+    "max_target_calls_per_goal": 3,
+    "note": "Auxiliary attacker and judge calls are additional."
+  },
+  "generalization_contract": {
+    "victim_agnostic": true,
+    "goal_agnostic": true,
+    "note": "No target-model, goal-ID, goal-text, or benchmark-category-specific branches, prompts, or parameters."
+  },
+  "generalization_audit": {
+    "status": "passed",
+    "victim_agnostic": true,
+    "goal_agnostic": true,
+    "files_scanned": 3,
+    "violations": []
+  },
+  "validated_at": "2026-08-14T09:17:03.706249+00:00",
+  "validated_name": "In-Context Attack 2.0-08-14-17-17",
+  "validation_timezone": "Asia/Shanghai",
+  "final_evaluation_id": "20260814-162056-final-in-context-attack-2-0",
+  "results_manifest": "results/In-Context Attack 2.0-08-14-17-17/manifest.json"
+}

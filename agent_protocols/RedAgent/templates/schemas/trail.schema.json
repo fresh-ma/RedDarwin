@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "RedAgent attempt trail",
+  "type": "object",
+  "required": ["trail_id", "goal_id", "attempt", "timestamp", "target", "attack", "prompt", "victim_calls"],
+  "properties": {
+    "trail_id": {"type": "string"},
+    "goal_id": {"type": "string", "pattern": "^goal_\\d{3}$"},
+    "attempt": {"type": "integer", "minimum": 1},
+    "timestamp": {"type": "string"},
+    "duration_s": {"type": ["number", "null"]},
+    "target": {
+      "type": "object",
+      "required": ["model", "provider", "temperature", "max_tokens"],
+      "properties": {
+        "model": {"type": "string"},
+        "provider": {"type": "object"},
+        "temperature": {"type": "number"},
+        "max_tokens": {"type": "integer"}
+      }
+    },
+    "attack": {
+      "type": "object",
+      "required": ["skill", "rationale"],
+      "properties": {
+        "skill": {"type": "string"},
+        "variant": {"type": ["string", "null"]},
+        "parameters": {"type": ["object", "null"]},
+        "modules": {"type": ["array", "null"], "items": {"type": "string"}},
+        "rationale": {"type": "string"}
+      }
+    },
+    "prompt": {
+      "type": "object",
+      "required": ["messages"],
+      "properties": {
+        "messages": {"type": "array", "items": {"type": "object"}}
+      }
+    },
+    "response": {
+      "type": ["object", "null"],
+      "properties": {
+        "text": {"type": ["string", "null"]},
+        "finish_reason": {"type": ["string", "null"]},
+        "error": {"type": ["object", "null"]}
+      }
+    },
+    "victim_calls": {"type": "integer", "enum": [0, 1]},
+    "aux_calls": {"type": ["integer", "null"]},
+    "judge": {
+      "type": ["object", "null"],
+      "properties": {
+        "model": {"type": "string"},
+        "score": {"type": ["integer", "null"]},
+        "success": {"type": ["boolean", "null"]},
+        "rationale": {"type": ["string", "null"]}
+      }
+    },
+    "outcome": {"type": ["string", "null"], "enum": ["success", "refusal", "partial", "error", "infra_error", null]}
+  }
+}

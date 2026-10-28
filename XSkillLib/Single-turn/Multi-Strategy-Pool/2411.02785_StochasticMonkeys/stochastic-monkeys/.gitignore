@@ -1,0 +1,7 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+uv.lock
+# Incremental raw stream; the canonical summarized JSON is tracked.
+results/*.jsonl

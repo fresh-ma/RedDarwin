@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "id": "stochastic-monkeys2-0",
+  "method_name": "Stochastic Monkeys 2.0",
+  "cycle": "sm2-20260818",
+  "type": "single-skill-evolution",
+  "status": "keep",
+  "created_at": "2026-08-18T07:37:28.446308+00:00",
+  "research_mode": "exploit",
+  "parents": [
+    "stochastic-monkeys"
+  ],
+  "baseline_skills": [
+    "stochastic-monkeys"
+  ],
+  "baseline_evaluation_ids": [
+    "published-leaderboard"
+  ],
+  "nearest_skills": [
+    "gptfuzzer",
+    "turbofuzzllm"
+  ],
+  "novelty_claim": "Replace the parent's primitive ASCII-noise augmentation operator with a stochastic compositional generator over semantic jailbreak primitives (personas, scenarios, response-prefill suffixes, instruction framings, and lightweight encodings). The open-loop best-of-n search and zero-attacker-LLM cost structure are preserved, but each sampled 'augmentation' is a coherent jailbreak prompt rather than random character/string noise.",
+  "initial_hypothesis": "Stochastic Monkeys 2.0 will achieve a mean ASR greater than 0.20 across the four-victim panel with at most k=25 target calls per goal, beating the locked baseline mean ASR of 0.00.",
+  "key_insight": "Modern safety alignment is robust to random character perturbations, yet still fails on semantically coherent framings. Random composition of lightweight semantic operators samples the alignment boundary more effectively than random ASCII noise while keeping the search open-loop and cheap.",
+  "hypothesis": "Stochastic Monkeys 2.0 will achieve a mean ASR greater than 0.20 across the four-victim panel with at most k=25 target calls per goal, beating the locked baseline mean ASR of 0.00.",
+  "implementation_entrypoint": "",
+  "wrapper": "scripts/stochastic-monkeys2-0.sh",
+  "evaluation_budget": {
+    "max_target_calls_per_goal": 25,
+    "note": "Auxiliary attacker and judge calls are additional."
+  },
+  "generalization_contract": {
+    "victim_agnostic": true,
+    "goal_agnostic": true,
+    "note": "No target-model, goal-ID, goal-text, or benchmark-category-specific branches, prompts, or parameters."
+  },
+  "generalization_audit": {
+    "status": "passed",
+    "victim_agnostic": true,
+    "goal_agnostic": true,
+    "files_scanned": 7,
+    "violations": []
+  },
+  "validated_at": "2026-08-18T12:56:22.883530+00:00",
+  "validated_name": "Stochastic Monkeys 2.0-08-18-20-56",
+  "validation_timezone": "Asia/Shanghai",
+  "final_evaluation_id": "20260818-175222-final-stochastic-monkeys2-0",
+  "results_manifest": "results/Stochastic Monkeys 2.0-08-18-20-56/manifest.json"
+}

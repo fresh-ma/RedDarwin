@@ -1,0 +1,21 @@
+{
+  "schema": "execution_profile.v0.1",
+  "method": "codeattack",
+  "threat_model": "black-box",
+  "gpu": {
+    "required": false,
+    "reason": "The attack transforms text goals into code-completion prompts and queries target/judge models through chat/API access."
+  },
+  "roles": {
+    "target": "black-box chat/API model, local default api:deepseek/deepseek-v4-flash",
+    "judge": "official-style 1-5 policy score judge or refusal-prefix rule judge; model-backed local default api:deepseek/deepseek-v4-flash"
+  },
+  "default_dataset": "data/advbench_harmful_behaviors.csv",
+  "default_prompt_type": "python_stack_plus",
+  "reliability_controls": {
+    "request_timeout_seconds": 45,
+    "model_call_retries": 3,
+    "empty_or_unparsed_model_outputs": "recorded as invalid and excluded from ASR denominator after retries"
+  },
+  "default_output": "results/codeattack_<target>_<prompt_type>_<n>x<samples>_<timestamp>.json"
+}

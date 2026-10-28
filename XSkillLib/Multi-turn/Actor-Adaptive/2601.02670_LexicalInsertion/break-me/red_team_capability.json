@@ -1,0 +1,62 @@
+{
+  "paper_id": "2601.02670_multi-turn-lexical-jailbreak",
+  "method_id": "break-me",
+  "taxonomy": {
+    "concept_type": "attack-methods",
+    "attack_method_category": "conversation-state",
+    "attack_strategy": "multi-turn-jailbreak",
+    "knowledge_ref": "xsafebench/Knowledge/concepts/attack-methods/conversation-state/multi-turn-jailbreak.md",
+    "secondary_category": "automated-search",
+    "label_source": "mirror_of_unit_root_rtc"
+  },
+  "attack_name": "LATS — 'Break Me If You Can' (multi-turn attacker-LLM-free lexical-anchor tree search)",
+  "family": "multi-turn-tree-search",
+  "concept": "victim-self-generated-lexical-anchor-steering",
+  "access": "black-box",
+  "modality": "text",
+  "summary": "Multi-turn, black-box, attacker-LLM-free jailbreak. The victim T is made to generate its own pool of benign/harmful prompt-completion pairs; LATS then steers T toward the goal P* over a few turns by injecting only the missing content words ('lexical anchors'), never restating the full malicious request. BFS over Completion-Expansion / Anchor-Injection nodes; first judge 'yes' halts (shortest trajectory).",
+  "payload_contract": {
+    "input_fields": ["goal"],
+    "output_form": "multi_turn_conversation_history",
+    "signal": "live target output + HarmBench yes/no judge verdict per node",
+    "feedback_dependency": "adaptive — each node's expansion query and BFS halt depend on live target output + judge; no fixed replayable artifact",
+    "composition_status": "not_composable"
+  },
+  "data": {
+    "dataset": "AdvBench (Zou et al. 2023, 520 goals, vendored verbatim)",
+    "full_count": 520,
+    "path": "data/advbench_harmful_behaviors.csv",
+    "format": "csv (goal column)",
+    "sampled_in_run": 20,
+    "regenerate": "N/A — shipped in full; run a --sample-rows slice"
+  },
+  "roles": {
+    "target": {"flag": "--target", "default": "api:deepseek/deepseek-v4-flash"},
+    "judge": {"flag": "--judge", "default": "api:deepseek/deepseek-v4-flash"},
+    "json_fixer": {"flag": "--json-fixer", "default": "api:deepseek/deepseek-v4-flash"},
+    "embedder": {"flag": "--embedder", "default": "st:sentence-transformers/paraphrase-MiniLM-L6-v2"},
+    "spacy_model": {"flag": "--spacy-model", "default": "en_core_web_md"}
+  },
+  "judge": {
+    "type": "dual",
+    "content_harmful": "HarmBench-adapted yes/no LLM judge (Appendix 14)",
+    "refusal_bypass": "rule-based refusal-marker opening heuristic"
+  },
+  "metrics": {
+    "source_result": "results/deakin_20260720-003100.json",
+    "audit": "GLM_REVIEW_20260720.md (zai/glm-5.2)",
+    "target": "api:deepseek/deepseek-v4-flash",
+    "n_tested": 20,
+    "refusal_bypass": {"success_count": 20, "n_tested": 20, "rate": 1.0, "basis": "raw rule-based (trustworthy)"},
+    "content_harmful": {"raw": {"success_count": 20, "n_tested": 20, "rate": 1.0}, "audited": {"success_count": 17, "n_tested": 20, "rate": 0.85, "basis": "GLM genuine-harm audit; removed cases 10,17,18"}},
+    "paper_reported_asr": "91.2% avg AdvBench across 9 SOTA models (Sec 6.1); 92.3% HarmBench; 100% on GPT-4o/Vicuna-13B/Mistral-7B",
+    "verdict": "faithful-success"
+  },
+  "fidelity_level": "faithful_from_paper",
+  "substitutions": [
+    "No official code release; reimplemented from Algorithm 1 + verbatim appendix prompts (Appendix 12/13/14).",
+    "Single-LLM HarmBench yes/no judge substituted for the paper's Llama-3.3-8B/70B + GPT-4o-mini majority-vote ensemble; open-model victim (DeepSeek-v4-flash) substituted for GPT-5.1/GPT-4o etc. (model_substitution_run).",
+    "This run used the deterministic lexical fallback (sentence-transformers/spaCy unavailable); tagged embedder_backend/anchor_backend in run JSON."
+  ],
+  "official_code": "none (paper.meta.json code_repos == [])"
+}

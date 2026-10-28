@@ -1,0 +1,82 @@
+#!/usr/bin/env bash
+# FicDetail 2.0 (proposal ficdetail-2-0, evolution of ficdetail/2505.17650) on
+# $VICTIM (default deepseek-v4-flash), first $N_GOALS goals of $GOALS_FILE
+# (default bench/AdvBench.csv), then the unified judge. Resume-safe: the raw
+# output name is deterministic per shard (victim slug + short sha of the
+# extracted goals), attack.py skips goals already completed in it (and the
+# premise compiler is cached per goal), and a judged file covering all goals
+# short-circuits the run. Only the judged file and the raw checkpoint are kept.
+#
+# Mechanism: aux-LLM premise compiler (goal -> in-world premise pack, no
+# 'harmful text' marker, no goal verbatim; aux = deepseek/deepseek-v4-flash, one retry
+# with deepseek/deepseek-v4-flash, deterministic Python fallback, per-goal cache) +
+# reply-conditioned 3-turn ladder (T1 compiled premise; T2 re-anchor /
+# concretize / escalate by pure-Python reply class; T3 appendix SOP with
+# re-anchor when T2 refused). Exactly 3 victim calls per goal, never more.
+# Settings (frozen): target max_tokens 8192, temperature 0.0, reasoning ON.
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+export PYTHONPATH="$ROOT/runtime_hooks:$ROOT${PYTHONPATH:+:$PYTHONPATH}"
+METHOD="$ROOT/XSkillLib/Proposal/ficdetail-2-0"
+PY="$ROOT/.venv/bin/python"
+VICTIM="${VICTIM:-deepseek/deepseek-v4-flash}"        # bare model id, no api: prefix
+GOALS_FILE="${GOALS_FILE:-$ROOT/bench/AdvBench.csv}"
+N_GOALS="${N_GOALS:-5}"
+RESULTS="${ATTACK_RESULTS_DIR:-$ROOT/results/$(date +%Y%m%d-%H%M%S)}"
+VICTIM_SLUG="${VICTIM##*/}"
+mkdir -p "$RESULTS"
+
+GOALS_CSV="$(mktemp -t ficdetail2_goals_XXXXXX.csv)"
+JUDGED_TMP="$(mktemp -t ficdetail2_judged_XXXXXX.json)"
+trap 'rm -f "$GOALS_CSV" "$JUDGED_TMP"' EXIT
+
+# first $N_GOALS goals of $GOALS_FILE -> temp CSV with a `goal` column (the
+# skill's choose() shuffles before sampling, so feeding exactly $N_GOALS rows
+# guarantees the first $N_GOALS regardless of seed)
+"$PY" - "$GOALS_FILE" "$GOALS_CSV" "$N_GOALS" <<'EOF'
+import csv, sys
+with open(sys.argv[1], newline='', encoding='utf-8') as f:
+    goals = [r['request'] for r in csv.DictReader(f)][:int(sys.argv[3])]
+with open(sys.argv[2], 'w', newline='', encoding='utf-8') as g:
+    w = csv.writer(g)
+    w.writerow(['goal'])
+    w.writerows([goal] for goal in goals)
+EOF
+
+# deterministic per-shard names: re-invocation of the same shard resumes/skips
+SHARD_ID="$(shasum -a 256 "$GOALS_CSV" | cut -c1-8)"
+RAW_OUT="$RESULTS/ficdetail-2-0_${VICTIM_SLUG}_${SHARD_ID}.raw.json"
+JUDGED_OUT="$RESULTS/ficdetail-2-0_${VICTIM_SLUG}_${SHARD_ID}.judged.json"
+
+# resume-safe: skip the attack entirely when the judged file already covers all goals
+if [ -f "$JUDGED_OUT" ] && "$PY" - "$JUDGED_OUT" "$N_GOALS" <<'EOF'
+import json, sys
+try:
+    with open(sys.argv[1], encoding='utf-8') as f:
+        data = json.load(f)
+except Exception:
+    sys.exit(1)
+results = data.get('results') or data.get('records') or []
+sys.exit(0 if len(results) >= int(sys.argv[2]) else 1)
+EOF
+then
+  echo "resume: $JUDGED_OUT already covers $N_GOALS goals; skipping" >&2
+  exit 0
+fi
+
+# 1) run the attack (API keys come from the walk-up .env loader; attack.py
+#    writes $RAW_OUT incrementally and skips goals it already completed)
+cd "$METHOD"
+"$PY" scripts/attack.py run \
+  --goals "$GOALS_CSV" --sample-rows "$N_GOALS" --seed 20260720 \
+  --target "api:$VICTIM" \
+  --aux-model api:deepseek/deepseek-v4-flash --aux-fallback api:deepseek/deepseek-v4-flash \
+  --judge-model api:deepseek/deepseek-v4-flash \
+  --target-max-tokens 8192 --target-temperature 0.0 \
+  --out "$RAW_OUT"
+
+# 2) unified judge -> atomic single judged file in results/, prints ASR
+cd "$ROOT"
+"$PY" judge/unified_judge.py --input "$RAW_OUT" --output "$JUDGED_TMP"
+mv "$JUDGED_TMP" "$JUDGED_OUT"

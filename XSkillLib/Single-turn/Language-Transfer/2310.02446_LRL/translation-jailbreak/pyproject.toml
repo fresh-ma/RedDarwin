@@ -1,0 +1,9 @@
+[project]
+name = "agentic-carlini-translation-jailbreak"
+version = "0.1.0"
+description = "Paper-local translation-based jailbreak runner for arXiv 2310.02446."
+requires-python = ">=3.11"
+dependencies = [
+    "boto3>=1.34",
+]
+

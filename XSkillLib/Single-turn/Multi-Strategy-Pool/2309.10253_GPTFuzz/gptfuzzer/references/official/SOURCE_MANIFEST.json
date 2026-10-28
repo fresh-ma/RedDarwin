@@ -1,0 +1,12 @@
+{
+  "source_type": "github",
+  "repo": "sherdencooper/GPTFuzz",
+  "source_url": "https://github.com/sherdencooper/GPTFuzz",
+  "api_url": "https://api.github.com/repos/sherdencooper/GPTFuzz",
+  "default_branch": "master",
+  "commit_sha": "0c26cccc3b19cd5eed91d6cb6912431cf2501762",
+  "downloaded_at": "2026-06-24T20:28:34.732707+00:00",
+  "archive_url": "https://api.github.com/repos/sherdencooper/GPTFuzz/zipball/0c26cccc3b19cd5eed91d6cb6912431cf2501762",
+  "paper_owned_official_source": true,
+  "file_count": 35
+}

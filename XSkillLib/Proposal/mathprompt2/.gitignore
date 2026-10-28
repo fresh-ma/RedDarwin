@@ -1,0 +1,4 @@
+__pycache__/
+results/
+checkpoints/
+encode_cache/

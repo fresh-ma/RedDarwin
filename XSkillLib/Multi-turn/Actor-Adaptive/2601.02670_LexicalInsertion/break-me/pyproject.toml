@@ -1,0 +1,24 @@
+[project]
+name = "agentic-carlini-break-me-code"
+version = "0.1.0"
+description = "Paper-local Code of LATS / 'Break Me If You Can' (arXiv 2601.02670) — multi-turn lexical-anchor tree-search black-box jailbreak."
+requires-python = ">=3.11"
+dependencies = [
+    "openai>=1.0",
+    "sentence-transformers>=3.0",
+    "spacy>=3.7",
+    "torch>=2.2,<2.7",
+    "transformers>=4.44,<5",
+    "wordfreq>=3.1",
+]
+
+# The faithful attacker-side lexical tools (Phase-1 paraphrase Top-k + Phase-2 spaCy/wordfreq
+# anchor identification). Kept OPTIONAL so `--help` / render / smoke run with no heavy download;
+# without them the tools fall back to a deterministic lexical heuristic (recorded in the run JSON).
+#   uv sync --extra faithful && uv run python -m spacy download en_core_web_md
+[project.optional-dependencies]
+faithful = [
+    "sentence-transformers>=2.2",
+    "spacy>=3.7",
+    "wordfreq>=3.0",
+]

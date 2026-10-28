@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "id": "coa-2-0",
+  "method_name": "CoA 2.0",
+  "cycle": "coa-2-0-v1",
+  "type": "single-skill-evolution",
+  "status": "keep",
+  "created_at": "2026-08-20T07:20:54.407017+00:00",
+  "research_mode": "exploit",
+  "parents": [
+    "coa"
+  ],
+  "baseline_skills": [
+    "coa"
+  ],
+  "baseline_evaluation_ids": [
+    "published-leaderboard"
+  ],
+  "nearest_skills": [
+    "coa-transactional-refusal-retry"
+  ],
+  "novelty_claim": "Replaces the parent's lexical-overlap escalation driver with judge-feedback-driven semantic steering: the walk advances on internal-judge rating gain, caps escalation at the conceptual/dual-use register, and harvests early instead of pushing to the literal goal ask.",
+  "initial_hypothesis": "At the same five-target-call budget, judge-driven steering with a conceptual-register cap and early harvest will convert the dominant hard-refusal failure class and raise mean ASR by at least 30% relative to the locked published baseline (0.185) across the victim panel.",
+  "key_insight": "In base CoA, lexical-overlap feedback equates 'closer to goal text' with progress, but 72% of failures are refusals provoked by escalating to the literal goal phrasing while 44/52 successes stop early on indirect conceptual prompts; the escalation objective is anti-correlated with success.",
+  "hypothesis": "At the same five-target-call budget, judge-driven steering with a conceptual-register cap and early harvest will convert the dominant hard-refusal failure class and raise mean ASR by at least 30% relative to the locked published baseline (0.185) across the victim panel.",
+  "implementation_entrypoint": "",
+  "wrapper": "scripts/coa-2-0.sh",
+  "evaluation_budget": {
+    "max_target_calls_per_goal": 5,
+    "note": "Auxiliary attacker and judge calls are additional."
+  },
+  "generalization_contract": {
+    "victim_agnostic": true,
+    "goal_agnostic": true,
+    "note": "No target-model, goal-ID, goal-text, or benchmark-category-specific branches, prompts, or parameters."
+  },
+  "generalization_audit": {
+    "status": "passed",
+    "victim_agnostic": true,
+    "goal_agnostic": true,
+    "files_scanned": 2,
+    "violations": []
+  },
+  "validated_at": "2026-08-20T10:53:51.276599+00:00",
+  "validated_name": "CoA 2.0-08-20-18-53",
+  "validation_timezone": "Asia/Shanghai",
+  "final_evaluation_id": "20260820-171929-final-coa-2-0",
+  "results_manifest": "results/CoA 2.0-08-20-18-53/manifest.json"
+}

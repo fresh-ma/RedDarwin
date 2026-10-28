@@ -1,0 +1,26 @@
+{
+  "schema": "past_tense_data_manifest.v0.1",
+  "created_by": "codex consolidate 2026-07-01",
+  "datasets": [
+    {
+      "id": "jbb_behaviors",
+      "path": "data/harmful_behaviors_jailbreakbench.csv",
+      "rows": 100,
+      "source": "official tml-epfl/llm-past-tense",
+      "paper_usage": "main experiments use 100 harmful JBB-Behaviors over 10 categories"
+    },
+    {
+      "id": "advbench_harmful_behaviors",
+      "path": "data/advbench_harmful_behaviors.csv",
+      "rows": 520,
+      "source": "data/papers/candidate/2404.07921_amplified-adversarial-suffix-generation/amplegcg/official/llmattack/data/advbench/harmful_behaviors.csv",
+      "paper_usage": "paper reports an additional 50 AdvBench behaviors with 100 restarts"
+    },
+    {
+      "id": "released_jailbreak_artifacts",
+      "path": "data/released_artifacts/",
+      "source": "official tml-epfl/llm-past-tense/jailbreak_artifacts",
+      "paper_usage": "official released outputs for past/future/finetuned experiments"
+    }
+  ]
+}

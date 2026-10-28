@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "id": "mastermind-2-0",
+  "method_name": "Mastermind 2.0",
+  "cycle": "mastermind-2-0-v1",
+  "type": "single-skill-evolution",
+  "status": "keep",
+  "created_at": "2026-08-13T17:42:34.311407+00:00",
+  "research_mode": "exploit",
+  "parents": [
+    "mastermind"
+  ],
+  "baseline_skills": [
+    "mastermind"
+  ],
+  "baseline_evaluation_ids": [
+    "published-leaderboard"
+  ],
+  "nearest_skills": [
+    "crescendo-2-0"
+  ],
+  "novelty_claim": "Wrapper-aware actionability gating: the episode and GA success signal is realigned with the external judge's actionability standard (wrapped fictional/defensive/hypothetical near-content is capped below the solve threshold), and episode termination moves from a premature turn-level score short-circuit to plan-completion semantics with a de-wrap operationalization turn, so the strategy-genome search only stops on true solves.",
+  "key_insight": "In the locked baseline, 115/119 failures are false-solves: the in-loop judge scores wrapped defensive/framed near-content 7-9, short-circuiting episodes at plan step 1-2 and early-stopping the GA after 1 genome (genomes_evaluated=1 in most of 200 cases), so escalation and search never run. Cross-skill memory insight (crescendo-2-0-v1): internal stop criteria must match the external judge.",
+  "hypothesis": "On probe panels, wrapper-aware gating + full-plan escalation with a de-wrap turn raises mean ASR over the locked mastermind baseline (0.405) on the same per-goal victim-call budget (pop4 x gen2 x max-turns 6); falsified if probe mean ASR does not beat the parent's per-victim cells on matched goals.",
+  "implementation_entrypoint": "",
+  "wrapper": "scripts/mastermind-2-0.sh",
+  "evaluation_budget": {
+    "max_target_calls_per_goal": 192,
+    "note": "Auxiliary attacker and judge calls are additional."
+  },
+  "generalization_contract": {
+    "victim_agnostic": true,
+    "goal_agnostic": true,
+    "note": "No target-model, goal-ID, goal-text, or benchmark-category-specific branches, prompts, or parameters."
+  },
+  "generalization_audit": {
+    "status": "passed",
+    "victim_agnostic": true,
+    "goal_agnostic": true,
+    "files_scanned": 8,
+    "violations": []
+  },
+  "validated_at": "2026-08-14T19:26:07.010767+00:00",
+  "validated_name": "Mastermind 2.0-08-15-03-26",
+  "validation_timezone": "Asia/Shanghai",
+  "final_evaluation_id": "20260814-114258-final-mastermind-2-0",
+  "results_manifest": "results/Mastermind 2.0-08-15-03-26/manifest.json",
+  "promotion_decision": "keep: complete frozen AdvBench-50 final 20260814-114258-final-mastermind-2-0, 200/200 coverage, mean ASR 0.495 vs locked parent 0.405 (primary metric beats baseline). Per-victim: qwen 0.38 vs 0.44 (regress), gpt-oss 0.68 vs 0.36, deepseek 0.76 vs 0.58, luna 0.16 vs 0.24 (regress). Regressions are mechanism-caused (wrapped-cap flattens GA fitness on framed-compliance-only victims), recorded in EXPERIMENTS.md with the 3.0 hypothesis (uncapped fitness gradient + cap only on the solve gate). Fairness caveat: configured cap equals the parent's (192/goal); actual usage ~250-296 vs ~98-182 target calls per victim because the parent's usage was suppressed by the false-stop defect."
+}

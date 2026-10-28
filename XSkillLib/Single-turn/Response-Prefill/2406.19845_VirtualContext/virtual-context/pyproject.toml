@@ -1,0 +1,10 @@
+[project]
+name = "virtual-context"
+version = "0.2.0"
+description = "Paper-local Virtual Context (arXiv 2406.19845) special-token injection jailbreak."
+requires-python = ">=3.11"
+# SDK-free: target/judge speak OpenAI-compatible HTTP via stdlib urllib (scripts/models.py).
+dependencies = []
+
+[tool.uv]
+package = false

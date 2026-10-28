@@ -1,0 +1,10 @@
+[project]
+name = "autodan-turbo"
+version = "0.1.0"
+description = "AutoDAN-Turbo (arXiv 2410.05295) — black-box lifelong strategy-self-exploration jailbreak."
+requires-python = ">=3.11"
+# Black-box path is stdlib-only (urllib for OpenAI-compatible chat).
+dependencies = []
+
+[tool.uv]
+package = false

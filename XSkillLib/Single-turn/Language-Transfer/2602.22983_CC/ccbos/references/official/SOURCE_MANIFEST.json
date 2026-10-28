@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "paper": "2602.22983_obscure-classical-jailbreak",
+  "source_kind": "official_code_repo",
+  "code_repos_entry": "xunhuang123/CC-BOS",
+  "source_url": "xunhuang123/CC-BOS",
+  "local_path": "data/papers/candidate/2602.22983_obscure-classical-jailbreak/code/official/xunhuang123__CC-BOS",
+  "intake_status": "present_before_manifest_generation",
+  "snapshot_generated_at": "2026-06-25T03:03:20.231718+00:00",
+  "file_count": 52,
+  "dir_count": 6,
+  "byte_count": 29797760,
+  "truncated": false,
+  "notes": "Manifest generated for an already-present candidate code/official source directory.",
+  "manifest_recorded_commit_unverified": "2ab1d136194c8ecf7bef1ec539fa2189481fb715",
+  "observed_remote_head": "26513e40f910e21f2a242506a563274d8aebb07e",
+  "observed_remote_head_at": "2026-06-26",
+  "snapshot_commit_verified": false,
+  "snapshot_note": "Local source directory was already present without .git metadata; remote HEAD was checked live, but exact local snapshot commit is not verified."
+}

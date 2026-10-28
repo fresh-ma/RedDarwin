@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "id": "autodan-turbo2-0",
+  "method_name": "AutoDAN-Turbo 2.0",
+  "cycle": "autodan-turbo2-20260819",
+  "type": "single-skill-evolution",
+  "status": "complete",
+  "created_at": "2026-08-19T15:46:24.825406+00:00",
+  "research_mode": "exploit",
+  "parents": [
+    "autodan-turbo"
+  ],
+  "baseline_skills": [
+    "autodan-turbo"
+  ],
+  "baseline_evaluation_ids": [
+    "published-leaderboard"
+  ],
+  "nearest_skills": [
+    "tap"
+  ],
+  "novelty_claim": "Revives the paper's lifelong strategy library which silently no-ops in the parent (warm-up slice empty on the frozen bench), re-keys retrieval from response-only embeddings to goal+response, and replaces the raw-goal attacker-refusal fallback with a strategy-escape path.",
+  "initial_hypothesis": "With a properly seeded strategy library (disjoint warm-up slice) and goal-conditioned retrieval, mean ASR rises from 0.135 to >=0.20 (>=50% relative), with the largest gains on gpt-oss-120b and gpt-5.6-luna where 42-44/50 trajectories are flat refusals.",
+  "key_insight": "In every published run the warm-up stage seeded 0 strategies, so the attack degenerated to memoryless single-shot guessing; 40-100% of trajectories never used any strategy and the best prompt was the raw goal in 24-36/50 cases.",
+  "hypothesis": "With a properly seeded strategy library (disjoint warm-up slice) and goal-conditioned retrieval, mean ASR rises from 0.135 to >=0.20 (>=50% relative), with the largest gains on gpt-oss-120b and gpt-5.6-luna where 42-44/50 trajectories are flat refusals.",
+  "implementation_entrypoint": "",
+  "wrapper": "scripts/autodan-turbo2-0.sh",
+  "evaluation_budget": {
+    "max_target_calls_per_goal": 4,
+    "note": "Auxiliary attacker and judge calls are additional."
+  },
+  "generalization_contract": {
+    "victim_agnostic": true,
+    "goal_agnostic": true,
+    "note": "No target-model, goal-ID, goal-text, or benchmark-category-specific branches, prompts, or parameters."
+  },
+  "generalization_audit": {
+    "status": "passed",
+    "victim_agnostic": true,
+    "goal_agnostic": true,
+    "files_scanned": 7,
+    "violations": []
+  },
+  "validated_at": "2026-08-19T22:51:17.773727+00:00",
+  "validated_name": "AutoDAN-Turbo 2.0-08-20-06-51",
+  "validation_timezone": "Asia/Shanghai",
+  "final_evaluation_id": "20260820-051714-final-autodan-turbo2-0",
+  "results_manifest": "results/AutoDAN-Turbo 2.0-08-20-06-51/manifest.json"
+}

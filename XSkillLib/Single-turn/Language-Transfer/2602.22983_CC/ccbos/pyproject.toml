@@ -1,0 +1,11 @@
+[project]
+name = "ccbos"
+version = "0.1.0"
+description = "CC-BOS — Classical Chinese jailbreak prompt optimization via bio-inspired (fruit-fly) search (paper-local benchmark unit for 2602.22983)."
+requires-python = ">=3.11"
+# The attack runner uses only the Python standard library (urllib for OpenRouter
+# HTTP, csv/json/random/math). No third-party runtime deps → plain `uv run` works.
+dependencies = []
+
+[tool.uv]
+package = false

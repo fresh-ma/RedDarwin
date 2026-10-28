@@ -1,0 +1,41 @@
+{
+  "paper_id": "2409.11445_symbolic-math-jailbreak",
+  "method_id": "mathprompt",
+  "title": "Jailbreaking Large Language Models with Symbolic Mathematics",
+  "arxiv_id": "2409.11445",
+  "official_repo": null,
+  "repo_note": "paper.meta.json code_repos is empty; reproduced from the paper appendix (verbatim system prompt + 2 few-shot demos + prepended instruction).",
+  "attack_class": "A_blackbox_simple",
+  "no_gpu": true,
+  "script": "scripts/attack.py",
+  "skill": "SKILL.md",
+  "method_doc": "references/method.md",
+  "mechanism_doc": "reading/explanation-mechanism.md",
+  "dataset": {
+    "name": "AdvBench harmful_behaviors (goal column)",
+    "path": "data/advbench/harmful_behaviors.csv",
+    "role": "faithful representative subset of the paper's Liu-et-al 2024 120 harmful-behavior questions (80% from AdvBench/GPTFuzzer/MASTERKEY/TDC)"
+  },
+  "models": {
+    "attacker": "deepseek/deepseek-chat (OpenRouter; paper uses GPT-4o, documented substitution)",
+    "targets": ["qwen/qwen-2.5-7b-instruct", "mistralai/mistral-nemo"],
+    "judge": "deepseek/deepseek-chat serving the verbatim HarmBench standard classifier prompt (official cais/HarmBench-Llama-2-13b-cls is GPU-only)"
+  },
+  "judge_template": "HarmBench LLAMA2_CLS_PROMPT (standard behavior classifier), embedded verbatim in attack.py as HARMBENCH_CLS_PROMPT",
+  "verbatim_from_paper": {
+    "attacker_system_prompt": "Appendix 8.2 / Fig. sys_prompt",
+    "few_shot_demonstrations": "Appendix 8.3 / Figs. few_shot1, few_shot2",
+    "prepended_instruction": "Appendix 8.4 / Fig. prepend_inst"
+  },
+  "results": [
+    "results/mathprompt_qwen-2_5-7b-instruct.json",
+    "results/mathprompt_mistral-nemo.json"
+  ],
+  "headline": {
+    "qwen-2.5-7b": {"direct": {"content_harmful": 0.0, "refusal_bypass": 0.0}, "mathprompt": {"content_harmful": 0.25, "refusal_bypass": 1.0}},
+    "mistral-nemo": {"direct": {"content_harmful": 0.05, "refusal_bypass": 0.15}, "mathprompt": {"content_harmful": 0.2, "refusal_bypass": 1.0}},
+    "paper_reported_avg_asr": 0.736
+  },
+  "evidence_level": "real_model_run",
+  "errors": 0
+}

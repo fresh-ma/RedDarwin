@@ -1,0 +1,5 @@
+results/
+plan_cache/
+*.checkpoint.json
+__pycache__/
+.DS_Store

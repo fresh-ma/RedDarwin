@@ -1,0 +1,78 @@
+{
+  "schema_version": "paper_code_artifacts.v0.1",
+  "paper_id": "2401.06373_human-llm-persuasion-jailbreak",
+  "artifacts": [
+    {
+      "artifact_id": "taxonomy:persuasion-taxonomy-40",
+      "kind": "benchmark_dataset",
+      "name": "Official 40-technique persuasion taxonomy",
+      "role": "generator_input",
+      "source_urls": [
+        "https://github.com/CHATS-lab/persuasive_jailbreaker/blob/main/persuasion_taxonomy.jsonl"
+      ],
+      "probe_status": "cached_paper_local",
+      "local_path": "data/persuasion_taxonomy.jsonl",
+      "verified": {
+        "techniques": 40,
+        "format": "jsonl",
+        "fields": ["ss_technique", "ss_definition", "ss_example"]
+      }
+    },
+    {
+      "artifact_id": "dataset:advbench-harmful-behaviors",
+      "kind": "benchmark_dataset",
+      "name": "AdvBench harmful behaviors (520 rows)",
+      "role": "attack_behaviors",
+      "source_urls": [
+        "https://github.com/llm-attacks/llm-attacks"
+      ],
+      "probe_status": "cached_paper_local",
+      "local_path": "data/advbench_harmful_behaviors.csv",
+      "verified": {
+        "rows": 520,
+        "format": "csv",
+        "columns": ["goal", "target"]
+      }
+    },
+    {
+      "artifact_id": "template:one-shot-kd",
+      "kind": "prompt_template",
+      "name": "Official one_shot_kd in-context paraphraser template",
+      "role": "generator_prompt",
+      "source_urls": [
+        "https://github.com/CHATS-lab/persuasive_jailbreaker/blob/main/incontext_sampling_example.ipynb"
+      ],
+      "probe_status": "extracted_to_file",
+      "local_path": "data/prompts/one_shot_kd.txt"
+    },
+    {
+      "artifact_id": "template:qi2023-judge",
+      "kind": "prompt_template",
+      "name": "Qi et al. 2023 GPT-4 Judge rubric (1-5 Likert)",
+      "role": "judge_prompt",
+      "source_urls": [
+        "https://github.com/LLM-Tuning-Safety/LLMs-Finetuning-Safety/blob/main/gpt-3.5/eval_utils/openai_policy_gpt4_judge.py"
+      ],
+      "probe_status": "extracted_to_file",
+      "local_path": "data/prompts/qi_judge.txt"
+    },
+    {
+      "artifact_id": "runner:pap-e2e",
+      "kind": "script",
+      "name": "End-to-end PAP attack (generator + target + judge)",
+      "role": "end_to_end_attack_implementation",
+      "source_urls": [
+        "scripts/attack.py"
+      ],
+      "probe_status": "live_40case_pass",
+      "local_path": "scripts/attack.py",
+      "verified": {
+        "completion_result": "results/pap_deepseekchat_e2e_10x4_20260623.json",
+        "case_count": 40,
+        "parameter_sets": 4,
+        "provider_or_runtime_errors": 0,
+        "valid_for_code_completion": true
+      }
+    }
+  ]
+}

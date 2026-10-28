@@ -1,0 +1,10 @@
+# Proposal-local Git ignore
+
+# Generated caches and large evaluation outputs live outside the object DB;
+# their verified paths and SHA-256 pointers are recorded in EXPERIMENTS.md.
+__pycache__/
+*.pyc
+results/
+runs/
+*.raw.json
+*.judged.json

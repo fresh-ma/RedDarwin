@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "paper": "2410.05295_autonomous-jailbreak-agent",
+  "source_kind": "official_code_repo",
+  "code_repos_entry": "SaFoLab-WISC/AutoDAN-Turbo",
+  "source_url": "SaFoLab-WISC/AutoDAN-Turbo",
+  "local_path": "data/papers/candidate/2410.05295_autonomous-jailbreak-agent/code/official/SaFoLab-WISC__AutoDAN-Turbo",
+  "intake_status": "present_before_manifest_generation",
+  "snapshot_generated_at": "2026-06-25T17:37:39.213810+00:00",
+  "observed_remote_head": "389df844439888fc44ea7f5e8e95fd2b5c82ea64",
+  "observed_remote_head_at": "2026-06-26",
+  "snapshot_commit_verified": false,
+  "snapshot_note": "Local source directory was already present without .git metadata; remote HEAD was checked live, but exact local snapshot commit is not verified.",
+  "file_count": 36,
+  "dir_count": 6,
+  "byte_count": 138745379
+}

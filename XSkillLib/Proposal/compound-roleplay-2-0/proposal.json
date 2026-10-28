@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "id": "compound-roleplay-2-0",
+  "method_name": "Compound Roleplay 2.0",
+  "cycle": "cr2-20260819",
+  "type": "single-skill-evolution",
+  "status": "keep",
+  "created_at": "2026-08-19T15:35:29.988045+00:00",
+  "research_mode": "exploit",
+  "parents": [
+    "compound-roleplay"
+  ],
+  "baseline_skills": [
+    "compound-roleplay"
+  ],
+  "baseline_evaluation_ids": [
+    "published-leaderboard"
+  ],
+  "nearest_skills": [
+    "cognitive-overload-2-0"
+  ],
+  "novelty_claim": "Moves the harmful goal out of plaintext: an aux-LLM veils the goal into a mechanically decodable coded briefing carried inside the persona block; the self-assessment element becomes a decode-then-reconstruct contract and the contrastive table is recast as a past-tense third-person case reconstruction, removing the input-surface refusal trigger while preserving the parent's dual-column specificity scaffold.",
+  "initial_hypothesis": "Veiling the goal surface and recasting the table as past-tense case reconstruction raises mean ASR from 0.075 to >= 0.45 (>=6x) across the panel, with the largest gains on qwen3.7-flash and gpt-oss-120b (currently 0.00).",
+  "key_insight": "The parent's three compound elements add cognitive load but leave the raw goal in plaintext, so 3/4 victims refuse at input-intent recognition (150/200 cells). Veiling the goal surface (representation stage) plus a reverse-causal analytical register converts the refusal cells without extra victim calls.",
+  "hypothesis": "Veiling the goal surface and recasting the table as past-tense case reconstruction raises mean ASR from 0.075 to >= 0.45 (>=6x) across the panel, with the largest gains on qwen3.7-flash and gpt-oss-120b (currently 0.00).",
+  "implementation_entrypoint": "",
+  "wrapper": "scripts/compound-roleplay-2-0.sh",
+  "evaluation_budget": {
+    "max_target_calls_per_goal": 1,
+    "note": "Auxiliary attacker and judge calls are additional."
+  },
+  "generalization_contract": {
+    "victim_agnostic": true,
+    "goal_agnostic": true,
+    "note": "No target-model, goal-ID, goal-text, or benchmark-category-specific branches, prompts, or parameters."
+  },
+  "generalization_audit": {
+    "status": "passed",
+    "victim_agnostic": true,
+    "goal_agnostic": true,
+    "files_scanned": 6,
+    "violations": []
+  },
+  "validated_at": "2026-08-19T22:09:29.474740+00:00",
+  "validated_name": "Compound Roleplay 2.0-08-20-06-09",
+  "validation_timezone": "Asia/Shanghai",
+  "final_evaluation_id": "20260820-043928-final-compound-roleplay-2-0",
+  "results_manifest": "results/Compound Roleplay 2.0-08-20-06-09/manifest.json"
+}

@@ -1,0 +1,19 @@
+{
+  "paper_id": "2601.08837_adversarial-tales-jailbreak",
+  "method_id": "adversarial-tales",
+  "official_repo": null,
+  "official_repo_note": "No official repository was released; the paper also withholds its 40 hand-crafted tales.",
+  "fidelity": "paper_algorithm_code",
+  "entrypoint": "scripts/attack.py",
+  "data": {
+    "path": "data/historical_ailuminate_n20.csv",
+    "rows": 20,
+    "role": "self-contained preserved substitution sample",
+    "not_paper_original": true
+  },
+  "results": [
+    "results/tales_qwen7b_fastjudges_n10_benchmark_view_20260622.json",
+    "results/tales_ailuminate_demo_en_us_deepseek-chat_n20_20260609_215803.json"
+  ],
+  "mechanism_reference": "references/method.md"
+}

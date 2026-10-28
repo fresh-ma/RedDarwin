@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "id": "gptfuzzer-2-0",
+  "method_name": "GPTFuzzer 2.0",
+  "cycle": "gptfuzzer-2-0-v1",
+  "type": "single-skill-evolution",
+  "status": "keep",
+  "created_at": "2026-08-19T06:23:30.363450+00:00",
+  "research_mode": "exploit",
+  "parents": [
+    "gptfuzzer"
+  ],
+  "baseline_skills": [
+    "gptfuzzer"
+  ],
+  "baseline_evaluation_ids": [
+    "published-leaderboard"
+  ],
+  "nearest_skills": [
+    "turbofuzzllm-2-0",
+    "tap-2-0"
+  ],
+  "novelty_claim": "Keeps the fuzzing loop (seed pool, select-mutate-query-retain) but changes the representation being fuzzed: each genome is a (frame scaffold x question-transform chain) pair, where the goal is compiled through an attacker-LLM de-sensitization stage before insertion, and mutations are directed by the victim's refusal text with an auxiliary refusal/on-topic scorer deciding pool retention instead of blind prose mutation of stale templates.",
+  "initial_hypothesis": "At <=6 target calls per goal, feedback-directed fuzzing over (frame, transform) genomes will reach a mean ASR >= 0.20 on the AdvBench-50 panel, vs the locked baseline mean ASR 0.02 (published-leaderboard), by converting the dominant frame-recognition refusal class without breaking per-victim generality.",
+  "key_insight": "The baseline's consensus failure is frame recognition: all four victims pattern-match the 2019-era villain-roleplay templates and the plaintext goal inside them. Mutating template prose never touches the real decision variables (goal surface form + frame family), so the search is stuck. Feedback-directed mutation over a compiled (frame, transform) representation converts the dominant refusal class.",
+  "hypothesis": "At <=6 target calls per goal, feedback-directed fuzzing over (frame, transform) genomes will reach a mean ASR >= 0.20 on the AdvBench-50 panel, vs the locked baseline mean ASR 0.02 (published-leaderboard), by converting the dominant frame-recognition refusal class without breaking per-victim generality.",
+  "implementation_entrypoint": "",
+  "wrapper": "scripts/gptfuzzer-2-0.sh",
+  "evaluation_budget": {
+    "max_target_calls_per_goal": 6,
+    "note": "Auxiliary attacker and judge calls are additional."
+  },
+  "generalization_contract": {
+    "victim_agnostic": true,
+    "goal_agnostic": true,
+    "note": "No target-model, goal-ID, goal-text, or benchmark-category-specific branches, prompts, or parameters."
+  },
+  "generalization_audit": {
+    "status": "passed",
+    "victim_agnostic": true,
+    "goal_agnostic": true,
+    "files_scanned": 2,
+    "violations": []
+  },
+  "validated_at": "2026-08-19T15:49:27.403392+00:00",
+  "validated_name": "GPTFuzzer 2.0-08-19-23-49",
+  "validation_timezone": "Asia/Shanghai",
+  "final_evaluation_id": "20260819-191415-final-gptfuzzer-2-0",
+  "results_manifest": "results/GPTFuzzer 2.0-08-19-23-49/manifest.json"
+}

@@ -1,0 +1,6 @@
+[project]
+name = "compound-roleplay"
+version = "0.1.0"
+description = "Compound Role-Playing jailbreak (arXiv:2604.02652) — paper-local reproduction"
+requires-python = ">=3.11"
+dependencies = ["openai>=1.0"]

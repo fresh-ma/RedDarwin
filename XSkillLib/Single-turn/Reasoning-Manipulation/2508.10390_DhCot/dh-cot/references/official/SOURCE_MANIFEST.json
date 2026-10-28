@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "paper": "2508.10390_mdh-hybrid-jailbreak-detection-strategy",
+  "source_kind": "official_code_repo",
+  "code_repos_entry": "AlienZhang1996/DH-CoT",
+  "source_url": "AlienZhang1996/DH-CoT",
+  "local_path": "data/papers/candidate/2508.10390_mdh-hybrid-jailbreak-detection-strategy/code/official/AlienZhang1996__DH-CoT",
+  "intake_status": "present_before_manifest_generation",
+  "snapshot_generated_at": "2026-06-25T03:03:20.231718+00:00",
+  "commit": "2ab1d136194c8ecf7bef1ec539fa2189481fb715",
+  "file_count": 9,
+  "dir_count": 2,
+  "byte_count": 2869357,
+  "truncated": false,
+  "notes": "Manifest generated for an already-present candidate code/official source directory."
+}

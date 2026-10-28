@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "id": "cia-context2-0",
+  "method_name": "CIA-Context 2.0",
+  "cycle": "cia-context2-0-v1",
+  "type": "single-skill-evolution",
+  "status": "keep",
+  "created_at": "2026-08-13T17:34:01.317455+00:00",
+  "research_mode": "exploit",
+  "parents": [
+    "cia-context"
+  ],
+  "baseline_skills": [
+    "cia-context"
+  ],
+  "baseline_evaluation_ids": [
+    "published-leaderboard"
+  ],
+  "nearest_skills": [
+    "echo-chamber"
+  ],
+  "novelty_claim": "Replaces CIA's freeze-then-replay ladder with transcript-conditioned adaptive replanning: per-turn refusal/evasion detection triggers attacker-side repair of the remaining ladder using self-referential anchoring on the target's own accepted content, and the final camouflaged trigger is composed post-hoc as a synthesis of artifacts the target already produced rather than the auxiliary's pre-generated guess.",
+  "key_insight": "The parent's epsilon ladder is generated before any target contact and replayed blindly; historical runs show mid-ladder refusals and vague, under-anchored final answers (e.g. 'What does the paper show?') because neither the ladder nor the trigger ever sees the actual conversation. Conditioning both on the live transcript converts these failures without adding victim calls.",
+  "hypothesis": "Adaptive ladder repair plus a post-hoc synthesis trigger raises mean ASR above the locked parent 0.420 on the frozen AdvBench-50 panel with no more target calls per goal than the parent's observed maximum (10).",
+  "implementation_entrypoint": "",
+  "wrapper": "scripts/cia-context2-0.sh",
+  "evaluation_budget": {
+    "max_target_calls_per_goal": 10,
+    "note": "Auxiliary attacker and judge calls are additional."
+  },
+  "generalization_contract": {
+    "victim_agnostic": true,
+    "goal_agnostic": true,
+    "note": "No target-model, goal-ID, goal-text, or benchmark-category-specific branches, prompts, or parameters."
+  },
+  "generalization_audit": {
+    "status": "passed",
+    "victim_agnostic": true,
+    "goal_agnostic": true,
+    "files_scanned": 2,
+    "violations": []
+  },
+  "validated_at": "2026-08-14T07:18:26.555012+00:00",
+  "validated_name": "CIA-Context 2.0-08-14-15-18",
+  "validation_timezone": "Asia/Shanghai",
+  "final_evaluation_id": "20260814-134352-final-cia-context2-0",
+  "results_manifest": "results/CIA-Context 2.0-08-14-15-18/manifest.json"
+}

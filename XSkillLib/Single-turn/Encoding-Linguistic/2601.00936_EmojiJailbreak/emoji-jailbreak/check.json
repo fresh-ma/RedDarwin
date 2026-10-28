@@ -1,0 +1,40 @@
+{
+  "slug": "2601.00936_direct-emoji-jailbreak",
+  "rubric_version": "code-check-2.1",
+  "overall": "pass",
+  "method_dirs": [
+    "emoji-jailbreak"
+  ],
+  "dimensions": {
+    "faithful_to_paper": {
+      "status": "pass",
+      "evidence": "Implements both paper techniques (Section 3.1): emoji chaining (concept-word -> emoji substitution from paper Table 1) and emoji stuffing (emoji interleaving between words). Unicode NFC normalization per Section 4. Paper keyword classifier (32 keywords per class: Successful/Partial/Failed) faithfully reconstructed from Section 4 descriptions. Deliberately WEAK attack (paper JSR ~10%); our keyword JSR = 10% (overall), matching paper. No tuning to inflate ASR."
+    },
+    "no_cheating": {
+      "status": "pass",
+      "evidence": "All 60 results from live deepseek/deepseek-chat API calls via OpenRouter with 0 provider/runtime errors. All outputs non-empty (min 124 chars, avg 1139 chars). Chaining prompts verified to contain emoji substitutions. Stuffing prompts verified to contain interleaved emojis. Direct baseline provides honest comparison. No fake/smoke outputs."
+    },
+    "self_contained": {
+      "status": "pass",
+      "evidence": "Paper-local scripts + data/emoji_map.json + full data/advbench_harmful_behaviors.csv (520) with the recorded 20-row slice data/advbench_subset_20.csv. No external framework imports. Only requires OPENROUTER_API_KEY and the openai Python package. All inputs tracked in data/."
+    },
+    "model_flexible_fast": {
+      "status": "pass",
+      "evidence": "--target-model, --judge-model accept any OpenRouter model ID. --dataset, --emoji-map, --modes, --sample support full parameter flexibility. Resumable via per-case writes (idempotent skip-if-done)."
+    },
+    "result_comparable": {
+      "status": "pass",
+      "evidence": "Results record per-case: original goal, emoji-encoded prompt, target response, triple judge verdicts (dual rule-based, paper keyword classifier, LLM dual). Per-mode breakdown with dual ASR + keyword JSR. Direct baseline included for lift comparison. model_substitution_run labeled."
+    }
+  },
+  "completion_gate": {
+    "result": "results/emoji_deepseekchat_20x3_20260623_singlefolder.json",
+    "target": "api:deepseek/deepseek-chat",
+    "case_count": 60,
+    "parameter_sets": 3,
+    "provider_or_runtime_errors": 0,
+    "valid_for_code_completion": true,
+    "evidence_level": "real_model_run"
+  },
+  "deferred": []
+}

@@ -1,0 +1,24 @@
+[project]
+name = "agentic-carlini-art-jailbreak-code"
+version = "0.1.0"
+description = "ART / OPTIMUS compositional jailbreak attack (arXiv 2605.09225), faithful-from-paper reimplementation"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy>=1.26",
+    "openai>=1.0",
+    "sentence-transformers>=3.0",
+    "torch>=2.2,<2.7",
+    "transformers>=4.44,<5",
+]
+
+# Optional: the real released OPTIMUS scorer backend (--optimus-backend local). GPU/HF.
+[project.optional-dependencies]
+optimus-local = [
+    "torch",
+    "sentence-transformers",
+    "transformers",
+    "numpy",
+]
+
+[tool.uv]
+package = false

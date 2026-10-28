@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "id": "pap-2-0",
+  "method_name": "PAP 2.0",
+  "cycle": "pap-2-0-v1",
+  "type": "single-skill-evolution",
+  "status": "keep",
+  "created_at": "2026-08-18T08:09:37.256301+00:00",
+  "research_mode": "exploit",
+  "parents": [
+    "pap"
+  ],
+  "baseline_skills": [
+    "pap"
+  ],
+  "baseline_evaluation_ids": [
+    "published-leaderboard"
+  ],
+  "nearest_skills": [
+    "tap",
+    "pair"
+  ],
+  "novelty_claim": "PAP 2.0 keeps PAP's core social-influence paraphrase mechanism but adds a scenario-framing compiler stage: the attacker rewrites the harmful goal as a user message embedded inside a benign scenario frame (historical case study, reverse-engineering report, vulnerability write-up, security-training module, fictional scene, or red-team dataset entry) and blends 2-3 persuasion techniques from the full 40-technique taxonomy. A refusal-guided adaptive retry then switches to a different frame when the first attempt is refused or empty. The single-turn persuasion idea is preserved; what changes are the representation (scenario frame), the search operator (per-goal frame selection), and the feedback loop (refusal/empty-response-driven retry).",
+  "initial_hypothesis": "Scenario framing + blended persuasion + refusal-guided adaptive retry will raise mean ASR from the parent's ~0.5% to at least 5% on the frozen AdvBench-50 victim panel.",
+  "key_insight": "Harmful requests are rejected because their surface form matches a refusal heuristic. Embedding the same request inside a plausible benign scenario frame changes the surface form while preserving the underlying goal, and retrying with a different frame when the first is refused converts more refusals than a single direct paraphrase.",
+  "hypothesis": "Scenario framing + blended persuasion + refusal-guided adaptive retry will raise mean ASR from the parent's ~0.5% to at least 5% on the frozen AdvBench-50 victim panel.",
+  "implementation_entrypoint": "",
+  "wrapper": "scripts/pap-2-0.sh",
+  "evaluation_budget": {
+    "max_target_calls_per_goal": 4,
+    "note": "Auxiliary attacker and judge calls are additional."
+  },
+  "generalization_contract": {
+    "victim_agnostic": true,
+    "goal_agnostic": true,
+    "note": "No target-model, goal-ID, goal-text, or benchmark-category-specific branches, prompts, or parameters."
+  },
+  "generalization_audit": {
+    "status": "passed",
+    "victim_agnostic": true,
+    "goal_agnostic": true,
+    "files_scanned": 6,
+    "violations": []
+  },
+  "validated_at": "2026-08-18T13:07:47.706277+00:00",
+  "validated_name": "PAP 2.0-08-18-21-07",
+  "validation_timezone": "Asia/Shanghai",
+  "final_evaluation_id": "20260818-201008-final-pap-2-0",
+  "results_manifest": "results/PAP 2.0-08-18-21-07/manifest.json"
+}

@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "id": "codechameleon-2-0",
+  "method_name": "CodeChameleon 2.0",
+  "cycle": "codechameleon-2-0-v1",
+  "type": "single-skill-evolution",
+  "status": "keep",
+  "created_at": "2026-08-05T06:08:11.107292+00:00",
+  "research_mode": "exploit",
+  "parents": [
+    "codechameleon"
+  ],
+  "baseline_skills": [
+    "codechameleon"
+  ],
+  "baseline_evaluation_ids": [
+    "published-leaderboard"
+  ],
+  "nearest_skills": [
+    "codechameleon",
+    "bijection-learning",
+    "codeattack"
+  ],
+  "novelty_claim": "Replaces the parent's four fixed, published encryption rules with a per-instance seeded word-permutation cipher whose decryptor is synthesized fresh for each payload (no fixed artifact for alignment to recognize), and ships a de-recognized data-pipeline shell variant alongside the legacy ProblemSolver shell to isolate template/system-prompt recognition as the refusal driver.",
+  "key_insight": "gpt-oss-120b refuses CodeChameleon either outright at the prompt surface (published ProblemSolver template + overt code_sys_helpful jailbreak system prompt are recognizable artifacts) or sanitizes after decryption; the fixed four-rule cipher family is part of that recognized surface.",
+  "hypothesis": "A per-instance seeded permutation cipher lifts gpt-oss-120b ASR from 0.185 to >=0.45 on matched goals while keeping deepseek >=0.95; if the legacy shell improves as much as the pipeline shell the cipher is the causal ingredient, if only the pipeline shell improves, shell/system-prompt recognition dominates.",
+  "implementation_entrypoint": "",
+  "wrapper": "scripts/codechameleon-2-0.sh",
+  "evaluation_budget": {
+    "max_target_calls_per_goal": 2,
+    "note": "Auxiliary attacker and judge calls are additional."
+  },
+  "generalization_contract": {
+    "victim_agnostic": true,
+    "goal_agnostic": true,
+    "note": "No target-model, goal-ID, goal-text, or benchmark-category-specific branches, prompts, or parameters."
+  },
+  "generalization_audit": {
+    "status": "passed",
+    "victim_agnostic": true,
+    "goal_agnostic": true,
+    "files_scanned": 4,
+    "violations": []
+  },
+  "validated_at": "2026-08-05T07:30:57.039152+00:00",
+  "validated_name": "CodeChameleon 2.0-08-05-15-30",
+  "validation_timezone": "Asia/Shanghai",
+  "final_evaluation_id": "20260805-144249-final-codechameleon-2-0",
+  "results_manifest": "results/CodeChameleon 2.0-08-05-15-30/manifest.json"
+}

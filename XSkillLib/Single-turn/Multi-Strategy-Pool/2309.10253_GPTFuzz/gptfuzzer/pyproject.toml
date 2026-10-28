@@ -1,0 +1,14 @@
+[project]
+name = "gptfuzzer-attack"
+version = "0.1.0"
+requires-python = ">=3.11"
+# Target + mutator LLM use stdlib urllib only. The official RoBERTa judge
+# (hubert233/GPTFuzz) needs transformers/torch and runs on CPU. Pins are
+# required: the model config.json carries a legacy id2label that newer
+# huggingface_hub rejects.
+dependencies = [
+    "transformers==4.46.3",
+    "torch",
+    "huggingface_hub<0.26",
+    "numpy<2",
+]

@@ -1,0 +1,10 @@
+[project]
+name = "past-tense-refusal-generalization"
+version = "0.2.0"
+description = "Paper-local reproduction of the past/future-tense refusal-generalization jailbreak (arXiv:2407.11969)."
+requires-python = ">=3.11"
+# SDK-free: target/reformulator/judge all speak OpenAI-compatible HTTP via stdlib urllib (scripts/models.py).
+dependencies = []
+
+[tool.uv]
+package = false

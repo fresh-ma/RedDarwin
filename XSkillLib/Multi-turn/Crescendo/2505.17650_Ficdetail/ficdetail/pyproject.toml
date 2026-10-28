@@ -1,0 +1,11 @@
+[project]
+name = "ficdetail-attack"
+version = "0.1.0"
+description = "Paper-local FicDetail multi-turn fictional-detail jailbreak Code package (2505.17650)."
+requires-python = ">=3.11"
+dependencies = ["openai>=1.0"]
+
+[tool.attack]
+paper = "2505.17650_cot-jailbreak-mitigation-failure"
+method = "ficdetail"
+entrypoint = "scripts/attack.py"

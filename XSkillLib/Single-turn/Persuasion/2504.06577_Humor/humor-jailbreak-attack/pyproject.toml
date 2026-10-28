@@ -1,0 +1,6 @@
+[project]
+name = "humor-jailbreak-attack"
+version = "0.1.0"
+description = "Humor-based black-box jailbreak reproduction (2504.06577, Bypassing Safety Guardrails in LLMs Using Humor)."
+requires-python = ">=3.11"
+dependencies = ["openai>=1.0"]

@@ -1,0 +1,53 @@
+{
+  "schema_version": "paper_code_artifacts.v0.1",
+  "paper_id": "2601.00936_direct-emoji-jailbreak",
+  "artifacts": [
+    {
+      "artifact_id": "dataset:advbench-full-520",
+      "kind": "benchmark_dataset",
+      "name": "AdvBench harmful behaviors (full 520 rows) + recorded 20-row slice",
+      "role": "attack_behaviors",
+      "source_urls": [
+        "https://github.com/llm-attacks/llm-attacks"
+      ],
+      "probe_status": "cached_paper_local",
+      "local_path": "data/advbench_harmful_behaviors.csv",
+      "verified": {
+        "rows": 520,
+        "format": "csv",
+        "columns": ["goal", "target"],
+        "sample_slice": "data/advbench_subset_20.csv (20 rows, recorded canonical run)"
+      }
+    },
+    {
+      "artifact_id": "map:emoji-concept-map",
+      "kind": "prompt_component",
+      "name": "Curated harmful-concept to emoji dictionary",
+      "role": "generator_input",
+      "source_urls": [],
+      "probe_status": "cached_paper_local",
+      "local_path": "data/emoji_map.json",
+      "verified": {
+        "entries": 69,
+        "format": "json",
+        "seeded_from": "Paper Table 1 examples + AdvBench harmful concept extensions"
+      }
+    },
+    {
+      "artifact_id": "runner:emoji-jailbreak-e2e",
+      "kind": "script",
+      "name": "End-to-end emoji jailbreak attack (chaining + stuffing + direct)",
+      "role": "end_to_end_attack_implementation",
+      "source_urls": [],
+      "probe_status": "live_60case_pass",
+      "local_path": "scripts/attack.py",
+      "verified": {
+        "completion_result": "results/emoji_deepseekchat_20x3_20260623_singlefolder.json",
+        "case_count": 60,
+        "parameter_sets": 3,
+        "provider_or_runtime_errors": 0,
+        "valid_for_code_completion": true
+      }
+    }
+  ]
+}

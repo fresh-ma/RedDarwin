@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "id": "crescendo-2-0",
+  "method_name": "Crescendo 2.0",
+  "cycle": "crescendo-2-0-v1",
+  "type": "single-skill-evolution",
+  "status": "keep",
+  "created_at": "2026-08-13T12:48:22.423467+00:00",
+  "research_mode": "exploit",
+  "parents": [
+    "crescendo"
+  ],
+  "baseline_skills": [
+    "crescendo"
+  ],
+  "baseline_evaluation_ids": [
+    "published-leaderboard"
+  ],
+  "nearest_skills": [
+    "echo-chamber"
+  ],
+  "novelty_claim": "Repairs the Crescendo loop control: backtracks trigger on turn-level refusal of the asked question instead of objective-incompletion, the 0-100 stop scorer caps disclaimed/hypothetical wrapped content below the success threshold with an explicit de-wrap follow-up, and the attacker anchors each new question on the most concrete fragment the target already conceded instead of rotating framings.",
+  "key_insight": "Baseline evidence shows the strict refusal scorer flags the intentional benign opening as refusal in ~100% of conversations, exhausting both backtracks before any real refusal, and the scale scorer accepts disclaimer-wrapped content as success (35% of failures), stopping escalation at near-misses the unified judge scores 1-4.",
+  "hypothesis": "Turn-level refusal judgment plus wrapper-capped completion converts backtrack-thrash and false-stop failures into completed escalations, raising mean ASR above the locked parent 0.455 with equal or fewer target calls per goal.",
+  "implementation_entrypoint": "",
+  "wrapper": "scripts/crescendo-2-0.sh",
+  "evaluation_budget": {
+    "max_target_calls_per_goal": 8,
+    "note": "Auxiliary attacker and judge calls are additional."
+  },
+  "generalization_contract": {
+    "victim_agnostic": true,
+    "goal_agnostic": true,
+    "note": "No target-model, goal-ID, goal-text, or benchmark-category-specific branches, prompts, or parameters."
+  },
+  "generalization_audit": {
+    "status": "passed",
+    "victim_agnostic": true,
+    "goal_agnostic": true,
+    "files_scanned": 6,
+    "violations": []
+  },
+  "validated_at": "2026-08-13T17:11:35.341746+00:00",
+  "validated_name": "Crescendo 2.0-08-14-01-11",
+  "validation_timezone": "Asia/Shanghai",
+  "final_evaluation_id": "20260813-222052-final-crescendo-2-0",
+  "results_manifest": "results/Crescendo 2.0-08-14-01-11/manifest.json"
+}

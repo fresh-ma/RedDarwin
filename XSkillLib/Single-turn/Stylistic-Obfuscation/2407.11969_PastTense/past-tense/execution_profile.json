@@ -1,0 +1,46 @@
+{
+  "schema": "execution_profile.v0.2",
+  "method": "past-tense",
+  "paper": "2407.11969",
+  "access": "black_box",
+  "threat_model": "black-box",
+  "gpu": {
+    "required": false,
+    "resource": "none",
+    "reason": "Target, reformulator, and judge are all OpenAI-compatible chat/API models (stdlib-urllib client). The paper also evaluated local HF targets (phi3/gemma2/llama3/r2d2), but those are not required for the black-box API reproduction path."
+  },
+  "components": {
+    "target": {
+      "role": "victim",
+      "flag": "--target",
+      "default": "api:deepseek/deepseek-v4-flash"
+    },
+    "attacker_reformulator": {
+      "role": "attacker-rewriter (past/future-tense reformulation)",
+      "flag": "--reformulator",
+      "default": "api:deepseek/deepseek-v4-flash",
+      "interfaces": [
+        "api:/vllm: (OpenAI-compatible server incl. Ollama /v1)",
+        "ollama: (local direct)"
+      ]
+    },
+    "judge": {
+      "role": "evaluator",
+      "flag": "--judge-model",
+      "default": "api:deepseek/deepseek-v4-flash"
+    }
+  },
+  "turns": "single",
+  "optimizer": "none (stochastic restarts, no gradient / no feedback loop)",
+  "judge_type": "llm_judge",
+  "judge_detail": "official-all = rule (GCG refusal-prefix, refusal_bypass) + semantic (PAIR 1-10 rating, content_harmful primary) + llama (JailbreakBench safe/unsafe, secondary)",
+  "default_dataset": "data/harmful_behaviors_jailbreakbench.csv",
+  "reliability_controls": {
+    "request_timeout_seconds": 90,
+    "model_call_retries": 3,
+    "reasoning": "off (extra_body reasoning.enabled=false for OpenRouter)",
+    "target_max_tokens": 1024,
+    "empty_or_unparsed_model_outputs": "recorded as invalid and excluded from ASR denominator after retries"
+  },
+  "default_output": "results/past_tense_<target>_<attack>_<n>x<restarts>_<timestamp>.json"
+}

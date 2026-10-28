@@ -1,0 +1,32 @@
+{
+  "schema": "code_check.v2",
+  "paper_id": "2601.08837_adversarial-tales-jailbreak",
+  "method_id": "adversarial-tales",
+  "overall": "rerun_required_with_source_data_gap",
+  "fidelity": "paper_algorithm_code; no official code or original tales released",
+  "historical_evidence": {
+    "kind": "real_model_substitution_run",
+    "result_file": "results/tales_qwen7b_fastjudges_n10_benchmark_view_20260622.json",
+    "target": "api:qwen/qwen-2.5-7b-instruct",
+    "transform_model": "api:deepseek/deepseek-v4-flash",
+    "target_calls_completed": "20/20",
+    "baseline_unsafe": "1/10 = 0.10",
+    "tale_unsafe": "8/10 = 0.80",
+    "lift": "7/10 = 0.70"
+  },
+  "data": {
+    "dataset": "preserved historical AILuminate substitution sample",
+    "full_count": 20,
+    "path": "data/historical_ailuminate_n20.csv",
+    "format": "csv",
+    "source": "materialized from the preserved N=20 result envelope",
+    "provenance": "The paper's 40 hand-crafted tales are withheld; this is not a paper-original dataset.",
+    "sampled_in_run": 10,
+    "regenerate": "Use a compatible CSV with goal/prompt/prompt_text column."
+  },
+  "deferred": [
+    "Paper-original 40-tale dataset is unavailable.",
+    "Full 26-model paper evaluation is not reproduced.",
+    "The historical run predates explicit UNCERTAIN judge handling and is not current completion evidence."
+  ]
+}

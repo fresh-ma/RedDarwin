@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "id": "artprompt-2-0",
+  "method_name": "ArtPrompt 2.0",
+  "cycle": "artprompt-2-0-v1",
+  "type": "single-skill-evolution",
+  "status": "keep",
+  "created_at": "2026-08-18T16:58:31.467365+00:00",
+  "research_mode": "exploit",
+  "parents": [
+    "artprompt"
+  ],
+  "baseline_skills": [
+    "artprompt"
+  ],
+  "baseline_evaluation_ids": [
+    "published-leaderboard"
+  ],
+  "nearest_skills": [
+    "semantic-cloaking"
+  ],
+  "novelty_claim": "Evolves the parent's single-word masking into full-intent fragmentation: an auxiliary LLM masker selects EVERY intent-bearing content word (action verb + key objects), each rendered as its own ASCII-art block, so the visible plaintext retains only function words and carries no harmful semantics; the victim decodes the art blocks and reassembles the instruction itself.",
+  "initial_hypothesis": "Masking all intent-bearing content words (LLM-selected, each rendered as ASCII art) instead of one dataset word removes the plaintext intent that drives the consensus refusal mode, converting refusals into decode-and-comply trajectories and lifting mean ASR well above the locked 0.000 baseline across the 4-victim panel, at 1 victim call per goal (parent used 2).",
+  "key_insight": "Census of the locked baseline's 600 trajectories (published-leaderboard, 0.000 ASR on the frozen 50): the dominant consensus failure (66-83% per victim) is direct refusal driven by the PLAINTEXT remainder of the instruction — masking one dataset-category word leaves intent fully visible (e.g. 'commit identity theft and evade [MASK]'). The single masked word hides a token, not the intent.",
+  "hypothesis": "Masking all intent-bearing content words (LLM-selected, each rendered as ASCII art) instead of one dataset word removes the plaintext intent that drives the consensus refusal mode, converting refusals into decode-and-comply trajectories and lifting mean ASR well above the locked 0.000 baseline across the 4-victim panel, at 1 victim call per goal (parent used 2).",
+  "implementation_entrypoint": "",
+  "wrapper": "scripts/artprompt-2-0.sh",
+  "evaluation_budget": {
+    "max_target_calls_per_goal": 2,
+    "note": "Auxiliary attacker and judge calls are additional."
+  },
+  "generalization_contract": {
+    "victim_agnostic": true,
+    "goal_agnostic": true,
+    "note": "No target-model, goal-ID, goal-text, or benchmark-category-specific branches, prompts, or parameters."
+  },
+  "generalization_audit": {
+    "status": "passed",
+    "victim_agnostic": true,
+    "goal_agnostic": true,
+    "files_scanned": 2,
+    "violations": []
+  },
+  "validated_at": "2026-08-18T19:51:45.932335+00:00",
+  "validated_name": "ArtPrompt 2.0-08-19-03-51",
+  "validation_timezone": "Asia/Shanghai",
+  "final_evaluation_id": "20260819-030432-final-artprompt-2-0",
+  "results_manifest": "results/ArtPrompt 2.0-08-19-03-51/manifest.json"
+}

@@ -1,0 +1,8 @@
+[project]
+name = "emoji-jailbreak"
+version = "0.1.0"
+description = "Emoji-based jailbreaking (2601.00936) — single-turn black-box attack, self-contained Code repo."
+requires-python = ">=3.11"
+dependencies = [
+    "openai>=1.0",
+]

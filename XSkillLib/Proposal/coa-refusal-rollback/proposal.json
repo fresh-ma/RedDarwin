@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "id": "coa-refusal-rollback",
+  "type": "single-skill-evolution",
+  "status": "continue",
+  "created_at": "2026-08-04T17:34:55+08:00",
+  "parents": [
+    "coa"
+  ],
+  "key_insight": "CoA search state must follow the selected walk branch; a refused response is a rejected branch, not reusable context.",
+  "hypothesis": "With the same five target turns, refusal-triggered checkpoint rollback will reduce repeated refusals and improve paired unified ASR across the three victims.",
+  "implementation_entrypoint": "scripts/attack.py",
+  "wrapper": "scripts/coa-refusal-rollback.sh",
+  "formal_evaluation": "coa-refusal-rollback-v1-formal",
+  "decision": "continue",
+  "decision_reason": "Rollback eliminated repeated refusals and rejected-response commits, but only improved ASR on GPT-OSS and caused substantial per-goal churn on Qwen and DeepSeek.",
+  "next_hypothesis": "Discard only the refused exchange while retaining all accepted history and rewrite the current chain prompt; do not pop an accepted checkpoint or decrement the chain index."
+}

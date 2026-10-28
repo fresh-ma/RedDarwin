@@ -1,0 +1,15 @@
+{
+  "goal_id": "goal_005",
+  "status": "not_started",
+  "attempts_recorded": 0,
+  "victim_calls": 0,
+  "judged": 0,
+  "successes": 0,
+  "successful_skills": [],
+  "trails": [],
+  "infra_failures": 0,
+  "unresolved_judgments": 0,
+  "asr_at_1": null,
+  "asr_at_5": null,
+  "asr_at_10": null
+}

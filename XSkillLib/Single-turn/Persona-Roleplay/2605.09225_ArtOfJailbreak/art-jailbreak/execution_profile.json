@@ -1,0 +1,49 @@
+{
+  "access": "black_box",
+  "components": [
+    {
+      "role": "composer",
+      "kind": "llm",
+      "model": "api:deepseek/deepseek-v4-flash",
+      "resource": "api",
+      "swappable": true,
+      "purpose": "Compose(q,s) generator: applies k named in-the-wild tactics s to a simple harmful seed q, producing one jailbreak prompt j that preserves intent while reducing surface detectability"
+    },
+    {
+      "role": "target",
+      "kind": "llm",
+      "model": "api:deepseek/deepseek-v4-flash",
+      "resource": "api",
+      "swappable": true,
+      "purpose": "victim model; receives the single-turn composed jailbreak prompt j"
+    },
+    {
+      "role": "optimus_judge",
+      "kind": "llm",
+      "model": "api:deepseek/deepseek-v4-flash",
+      "resource": "api",
+      "swappable": true,
+      "purpose": "paper's OPTIMUS metric: verbatim Listing-3 5-point Likert rubric scoring semantic similarity S and prompt-level harmfulness H, fed to the byte-identical jbscore J(S,H) formula"
+    },
+    {
+      "role": "judge",
+      "kind": "llm",
+      "model": "api:deepseek/deepseek-v4-flash",
+      "resource": "api",
+      "swappable": true,
+      "purpose": "content-harmful response judge; combined with Listing-1 refusal-bypass keyword match for the dual metric"
+    }
+  ],
+  "gpu": {
+    "required": false,
+    "used_for": ["optional --optimus-backend local (SBERT all-mpnet-base-v2 for S + DeBERTa-large-MNLI for H)"],
+    "resource": "optional_local_hf"
+  },
+  "turns": "single",
+  "optimizer": "none",
+  "judge_type": "llm_judge",
+  "paper_original_models": ["GPT-4o", "Llama-3", "Vicuna", "and other JailBreakV-28K target grid models (paper reports OPTIMUS + classifier-evasion metrics, not a single binary ASR)"],
+  "key_packages": ["openai", "numpy"],
+  "env_keys": ["OPENROUTER_API_KEY"],
+  "runtime": "uv run (pyproject.toml + uv.lock at method root; unit-local .env auto-loaded)"
+}

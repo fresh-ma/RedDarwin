@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "id": "codeattack2-0",
+  "method_name": "CodeAttack 2.0",
+  "cycle": "codeattack2-0-v1",
+  "type": "single-skill-evolution",
+  "status": "keep",
+  "created_at": "2026-08-19T15:45:30.664278+00:00",
+  "research_mode": "exploit",
+  "parents": [
+    "codeattack"
+  ],
+  "baseline_skills": [
+    "codeattack"
+  ],
+  "baseline_evaluation_ids": [
+    "published-leaderboard"
+  ],
+  "nearest_skills": [
+    "codechameleon"
+  ],
+  "novelty_claim": "Silent-computation code encapsulation: decoding is moved out of the victim's generation entirely (a complete, valid, executable decode() is provided), the harmful goal never appears as a readable sentence (per-word reversal on top of the reversed stack, so the plaintext exists nowhere in the prompt), and the only open task is filling pre-structured output slots whose per-paragraph directives demand operational content; a fully worked benign example anchors the expected completion behavior. The parent's scaffold invited the victim to restate the decoded task aloud (safety trigger) and to spend its budget implementing decode() (token sink); both failure paths are structurally removed.",
+  "initial_hypothesis": "A valid executable scaffold with provided decode(), no verbalizable plaintext goal, a worked benign example, and operational per-paragraph directives converts the consensus decode-then-neutralize and decode-essay failure classes, raising mean ASR from the locked baseline 0.165 by >=50% relative (>=0.25) across the 4-victim panel with the same 1 victim call per goal.",
+  "key_insight": "Consensus mining over 350 baseline trajectories: the dominant cross-victim failure class is decode-then-neutralize (qwen 70/100 benign fills + 17 refusals, luna 42/50, gpt-oss ~88/100 between decode-essays and refusals); second class is token budget burned on writing decode() before any payload (gpt-oss 60/100); third is defensive reframe of the payload (deepseek 44/100, qwen). Success on deepseek (48%) correlates exactly with the model going straight to filling output_list with operational paragraphs. Removing the verbalized-decode surface and making data-filling the path of least resistance should convert all three classes.",
+  "hypothesis": "A valid executable scaffold with provided decode(), no verbalizable plaintext goal, a worked benign example, and operational per-paragraph directives converts the consensus decode-then-neutralize and decode-essay failure classes, raising mean ASR from the locked baseline 0.165 by >=50% relative (>=0.25) across the 4-victim panel with the same 1 victim call per goal.",
+  "implementation_entrypoint": "",
+  "wrapper": "scripts/codeattack2-0.sh",
+  "evaluation_budget": {
+    "max_target_calls_per_goal": 1,
+    "note": "Auxiliary attacker and judge calls are additional."
+  },
+  "generalization_contract": {
+    "victim_agnostic": true,
+    "goal_agnostic": true,
+    "note": "No target-model, goal-ID, goal-text, or benchmark-category-specific branches, prompts, or parameters."
+  },
+  "generalization_audit": {
+    "status": "passed",
+    "victim_agnostic": true,
+    "goal_agnostic": true,
+    "files_scanned": 8,
+    "violations": []
+  },
+  "validated_at": "2026-08-19T23:18:25.855954+00:00",
+  "validated_name": "CodeAttack 2.0-08-20-07-18",
+  "validation_timezone": "Asia/Shanghai",
+  "final_evaluation_id": "20260820-005529-final-codeattack2-0",
+  "results_manifest": "results/CodeAttack 2.0-08-20-07-18/manifest.json"
+}

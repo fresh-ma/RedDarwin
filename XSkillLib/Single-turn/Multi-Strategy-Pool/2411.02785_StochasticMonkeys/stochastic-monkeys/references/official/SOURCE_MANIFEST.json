@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "paper": "2411.02785_stochastic-monkey-jailbreak",
+  "source_kind": "official_code_repo",
+  "code_repos_entry": "uiuc-focal-lab/stochastic-monkeys",
+  "source_url": "uiuc-focal-lab/stochastic-monkeys",
+  "local_path": "xsafebench/automated-search/2411.02785_StochasticMonkeys/stochastic-monkeys/references/official",
+  "intake_status": "present_before_manifest_generation",
+  "snapshot_generated_at": "2026-06-25T03:03:20.231718+00:00",
+  "file_count": 36,
+  "dir_count": 6,
+  "byte_count": 562938,
+  "truncated": false,
+  "notes": "Manifest generated for the original candidate source capture and updated after consolidation into the paper-local method directory.",
+  "manifest_recorded_commit_unverified": "2ab1d136194c8ecf7bef1ec539fa2189481fb715",
+  "observed_remote_head": "b93faeaf8f3ed263f406b5471dc6beb16ebf4195",
+  "observed_remote_head_at": "2026-06-26",
+  "snapshot_commit_verified": false,
+  "snapshot_note": "Local source directory was already present without .git metadata; remote HEAD was checked live, but exact local snapshot commit is not verified."
+}

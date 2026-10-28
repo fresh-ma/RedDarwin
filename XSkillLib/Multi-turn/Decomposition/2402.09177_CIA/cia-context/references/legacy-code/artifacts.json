@@ -1,0 +1,38 @@
+{
+  "schema_version": "code_artifacts.v0.1",
+  "paper_id": "2402.09177_multi-turn-contextual-jailbreak",
+  "artifacts": [
+    {
+      "artifact_id": "advbench-subset-10",
+      "kind": "dataset",
+      "name": "AdvBench Subset (PAIR-curated harmful behaviors), 10-goal slice",
+      "role": "real harmful goals decomposed by the auxiliary LLM",
+      "probe_status": "paper_local_cache_ready",
+      "source_urls": [
+        "https://github.com/llm-attacks/llm-attacks",
+        "https://github.com/patrickrchao/JailbreakingLLMs"
+      ],
+      "local_path": "data/advbench_subset_10.jsonl"
+    },
+    {
+      "artifact_id": "cia-context-attack",
+      "kind": "paper_local_code",
+      "name": "Contextual Interaction Attack (faithful pipeline)",
+      "role": "auxiliary decompose -> multi-turn target -> dual judge",
+      "probe_status": "live_run_complete",
+      "source_urls": [],
+      "local_path": "scripts/attack.py"
+    },
+    {
+      "artifact_id": "no-official-repo",
+      "kind": "note",
+      "name": "No official code repository",
+      "role": "paper.meta.json code_repos lists only 'openai/gpt-3' (a dependency, not the CIA repo); reproduced from paper text",
+      "probe_status": "paperless",
+      "source_urls": [
+        "https://arxiv.org/abs/2402.09177"
+      ],
+      "local_path": null
+    }
+  ]
+}
